@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+<html lang="en" class="layout-navbar-fixed layout-menu-fixed layout-compact">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>올리면 끝. 올끝</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./assets/img/favicon/favicon.svg"
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./assets/vendor/fonts/iconify-icons.css" />
+
+    <!-- Core CSS -->
+    <!-- build:css assets/vendor/css/theme.css  -->
+
+    <link rel="stylesheet" href="./assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="./assets/css/custom.css" />
+    <!-- <link rel="stylesheet" href="./assets/css/demo.css" /> -->
+
+    <!-- Vendors CSS -->
+
+    <link
+      rel="stylesheet"
+      href="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"
+    />
+
+    <!-- endbuild -->
+
+    <!-- Page CSS -->
+
+    <script src="./assets/js/config.js"></script>
+    <style id="custom-css">
+      :root,
+      [data-bs-theme="light"],
+      [data-bs-theme="dark"] {
+        --bs-primary: #57adee;
+        --bs-primary-rgb: 32, 146, 236;
+        --bs-primary-bg-subtle: color-mix(
+          in sRGB,
+          var(--bs-paper-bg) 84%,
+          #2092ec
+        );
+        --bs-primary-border-subtle: rgba(32, 146, 236, 0.3);
+        --bs-primary-contrast: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+          <!-- Content -->
+          <div class="container-fluid flex-grow-1 container-p-y">
+            <div
+              class="d-flex flex-column flex-sm-row align-items-center justify-content-sm-between mb-6 text-center text-sm-start gap-2"
+            >
+              <div class="mb-2 mb-sm-0">
+                <h4 class="mb-1">
+                  <img
+                    src="data:image/png;base64,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"
+                  />
+                </h4>
+              </div>
+              <div
+                class="d-flex justify-content-between align-items-center gap-2"
+              >
+                <div class="avatar">
+                  <img src="./assets/img/top-right-btn1.png" />
+                </div>
+                <div class="avatar">
+                  <img src="./assets/img/top-right-btn2.png" />
+                </div>
+                <div class="avatar">
+                  <img
+                    src="./assets/img/avatar.png"
+                    alt="아바타"
+                    class="rounded-circle"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Customer-detail Sidebar -->
+              <div class="col-xl-3 col-lg-3 col-md-4 order-0 order-md-1 mb-3">
+                <div class="card mb-3">
+                  <div
+                    class="d-flex justify-content-start align-items-center p-3 gap-5"
+                  >
+                    <img
+                      class="img-fluid rounded"
+                      src="./assets/img/avatar.png"
+                    />
+                    <div class="customer-info text-start">
+                      <h5 class="mb-0">주식회사 뉴프렌즈</h5>
+                      <span class="text-body-secondary">newf@gmail.com</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- Customer-detail Card -->
+
+                <div class="card">
+                  <div class="card-body">
+                    <div
+                      class="d-flex justify-content-between flex-column mb-4 mb-md-0"
+                    >
+                      <ul class="nav nav-align-left nav-pills flex-column">
+                        <li class="nav-item mb-1">
+                          <a class="nav-link" href="index.html">
+                            <i
+                              class="icon-base bx bx-home-alt icon-18px me-1_5"
+                            ></i>
+                            <span class="align-middle">HOME</span>
+                          </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                          <a class="nav-link active" href="quote-list.html">
+                            <i
+                              class="icon-base bx bx-calculator icon-18px me-1_5"
+                            ></i>
+                            <span class="align-middle">견적 관리</span>
+                          </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                          <a class="nav-link" href="claim-list.html">
+                            <i
+                              class="icon-base bx bx-cart icon-18px me-1_5"
+                            ></i>
+                            <span class="align-middle">클레임</span>
+                          </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                          <a class="nav-link" href="delivery-list.html">
+                            <i
+                              class="icon-base bx bx-package icon-18px me-1_5"
+                            ></i>
+                            <span class="align-middle">배송 관리</span>
+                          </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                          <a class="nav-link" href="comment-list.html">
+                            <i
+                              class="icon-base bx bx-message-dots icon-18px me-1_5"
+                            ></i>
+                            <span class="align-middle">코멘트 관리</span>
+                          </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                          <a class="nav-link" href="settlement-list.html">
+                            <i
+                              class="icon-base bx bx-credit-card icon-18px me-1_5"
+                            ></i>
+                            <span class="align-middle">정산 관리</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- /Customer-detail Card -->
+                <!-- Plan Card -->
+
+                <!-- /Plan Card -->
+              </div>
+              <!--/ Customer Sidebar -->
+
+              <!-- Customer Content -->
+              <div class="col-xl-9 col-lg-9 col-md-8 order-1 order-md-2">
+                <!-- / Customer cards -->
+                <div class="row text-nowrap">
+                  <div class="col-12">
+                    <div class="card vh-75">
+                      <h4 class="card-header">견적관리</h4>
+                      <div class="card-body">
+                        <!-- 신규 컨텐츠 종료-->
+                        <!-- 박스 -->
+                        <div class="row">
+                          <div class="col-lg-6 col-xl-2 order-0">
+                            <a href="#"
+                              ><div class="alert bg-primary text-white">
+                                <span class="text-start">전체 견적</span>
+                                <h3 class="alert-heading mb-1 text-end">10</h3>
+                              </div></a
+                            >
+                          </div>
+                          <div class="col-lg-6 col-xl-2 order-0">
+                            <a href="#"
+                              ><div class="alert bg-label-primary text-dark">
+                                <span class="text-start">견적 요청</span>
+                                <h3 class="alert-heading mb-1 text-end">10</h3>
+                              </div></a
+                            >
+                          </div>
+                          <div class="col-lg-6 col-xl-2 order-0">
+                            <a href="#"
+                              ><div class="alert bg-label-primary text-dark">
+                                <span class="text-start">견적 확인증</span>
+                                <h3 class="alert-heading mb-1 text-end">10</h3>
+                              </div></a
+                            >
+                          </div>
+                          <div class="col-lg-6 col-xl-2 order-0">
+                            <a href="#"
+                              ><div class="alert bg-label-primary text-dark">
+                                <span class="text-start">견적 완료</span>
+                                <h3 class="alert-heading mb-1 text-end">10</h3>
+                              </div></a
+                            >
+                          </div>
+                          <div class="col-lg-6 col-xl-2 order-0">
+                            <a href="#"
+                              ><div class="alert bg-label-primary text-dark">
+                                <span class="text-start">결제 완료</span>
+                                <h3 class="alert-heading mb-1 text-end">10</h3>
+                              </div></a
+                            >
+                          </div>
+                          <div class="col-lg-6 col-xl-2 order-0">
+                            <a href="#"
+                              ><div class="alert bg-label-primary text-dark">
+                                <span class="text-start">견적 취소</span>
+                                <h3 class="alert-heading mb-1 text-end">10</h3>
+                              </div></a
+                            >
+                          </div>
+                        </div>
+                        <!-- 클래임 영역-->
+                        <div class="row">
+                          <div class="col-12">
+                            <div
+                              class="alert text-dark"
+                              style="background-color: #f8fcff"
+                            >
+                              <!-- 컨텐츠 시작-->
+                              <div class="row">
+                                <div class="col-xl-12 col-xxl-6 mb-3">
+                                  <div
+                                    class="card h-100 border-2 border-primary cursor-pointer"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#backDropModal"
+                                  >
+                                    <div
+                                      class="d-flex justify-content-between p-3 px-6"
+                                    >
+                                      <div
+                                        class="d-flex justify-content-start align-items-center gap-4"
+                                      >
+                                        <h5 class="mb-1">
+                                          <strong>#A034_12804</strong>
+                                        </h5>
+                                        <span
+                                          class="badge bg-label-primary mb-1"
+                                          >견적요청</span
+                                        >
+                                      </div>
+
+                                      <h6 class="mb-1 text-secondary">
+                                        2025.07-22 12:23:33
+                                      </h6>
+                                    </div>
+                                    <div
+                                      class="d-flex align-items-start row px-5 mb-3"
+                                    >
+                                      <div class="col-3">
+                                        <img
+                                          src="	./assets/img/product-img.png"
+                                          width="108"
+                                          height="108"
+                                          class="rounded-2"
+                                          alt="Chair Solid Wooden"
+                                        />
+                                      </div>
+                                      <div class="col-9">
+                                        <h5 class="card-title mb-4 text-wrap">
+                                          <strong>ChairSolid Wooden</strong>
+                                          <span
+                                            class="badge bg-label-secondary rounded-5"
+                                            >B2B</span
+                                          >
+                                        </h5>
+                                        <p class="card-subtitle text-wrap">
+                                          옵션 및 수량 : 블랙, 60cm*120cm, 300개
+                                        </p>
+                                        <p class="card-subtitle text-wrap">
+                                          제품 커스텀 : Y
+                                        </p>
+                                        <p class="card-subtitle text-wrap">
+                                          희망 납기일 : 10일 이내 희망
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="alert text-dark alert-primary alert-dismissible py-3 mx-5"
+                                      role="alert"
+                                    >
+                                      <span>빠른 배송 부탁합니다.</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- 컨텐츠 종료-->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- / customer cards -->
+                <!-- modal Start-->
+                <div
+                  class="modal fade"
+                  id="backDropModal"
+                  data-bs-backdrop="static"
+                  tabindex="-1"
+                >
+                  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                    <form class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="backDropModalTitle">
+                          #A034_12807
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <!-- modal content start -->
+                        <div class="row">
+                          <div class="col-12">
+                            <div
+                              class="custom-bg p-5 border-3"
+                              style="border-radius: 20px"
+                            >
+                              <div class="row mb-3">
+                                <div class="col-12">
+                                  <div class="card h-100">
+                                    <div
+                                      class="d-flex justify-content-between p-3 px-6"
+                                    >
+                                      <div
+                                        class="d-flex justify-content-start align-items-center gap-4"
+                                      >
+                                        <h5 class="mb-1">
+                                          <strong>#A034_12804</strong>
+                                        </h5>
+                                        <span
+                                          class="badge bg-label-primary mb-1"
+                                          >견적요청</span
+                                        >
+                                      </div>
+
+                                      <h6 class="mb-1 text-secondary">
+                                        2025.07-22 12:23:33
+                                      </h6>
+                                    </div>
+                                    <div
+                                      class="d-flex align-items-start row px-5 mb-3"
+                                    >
+                                      <div class="col-2">
+                                        <img
+                                          src="	./assets/img/product-img.png"
+                                          width="138"
+                                          height="108"
+                                          class="rounded-2"
+                                          alt="Chair Solid Wooden"
+                                        />
+                                      </div>
+                                      <div class="col-10">
+                                        <h5 class="card-title mb-4 text-wrap">
+                                          <strong>ChairSolid Wooden</strong>
+                                          <span
+                                            class="badge bg-label-secondary rounded-5"
+                                            >B2B</span
+                                          >
+                                        </h5>
+                                        <p class="card-subtitle text-wrap">
+                                          옵션 및 수량 : 블랙, 60cm*120cm, 300개
+                                        </p>
+                                        <p class="card-subtitle text-wrap">
+                                          제품 커스텀 : Y
+                                        </p>
+                                        <p class="card-subtitle text-wrap">
+                                          희망 납기일 : 10일 이내 희망
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="alert text-dark alert-primary alert-dismissible py-3 mx-3"
+                                    >
+                                      <span>빠른 배송 부탁합니다.</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- 상품정보 종료 -->
+                              <!-- 결제 정보 시작 -->
+                              <div class="row">
+                                <div class="col-12">
+                                  <div class="card h-100">
+                                    <div
+                                      class="d-flex justify-content-between p-3 px-6"
+                                    >
+                                      <div
+                                        class="d-flex justify-content-start align-items-center gap-4"
+                                      >
+                                        <h5 class="mb-1">
+                                          <strong>결제 정보</strong>
+                                        </h5>
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="d-flex align-items-start row px-5 mb-3"
+                                    >
+                                      <div class="row gy-4 gy-sm-1">
+                                        <div class="col-sm-6 col-lg-4">
+                                          <div
+                                            class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-4 pb-sm-0"
+                                          >
+                                            <p class="mb-1">완료 일자</p>
+                                            <p class="mb-1 me-6">
+                                              2025-07-22 09:00
+                                            </p>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4">
+                                          <div
+                                            class="d-flex justify-content-between align-itemscenter card-widget-1 border-end pb-4 pb-sm-0"
+                                          >
+                                            <p class="mb-1">결제 방법</p>
+                                            <p class="mb-1 me-6">카드 결제</p>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4">
+                                          <div
+                                            class="d-flex justify-content-between align-itemscenter card-widget-1 pb-4 pb-sm-0"
+                                          >
+                                            <p class="mb-1">결제 카드</p>
+                                            <p class="mb-1">
+                                              8234-****-****-5974
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="d-flex w-100 action-icons px-4 gap-3">
+                                      <div
+                                        class="w-100 alert text-dark alert-primary alert-dismissible d-flex justify-content-between align-items-center"
+                                      >
+                                        <span>최종 결제 금액</span>
+                                        <span>4,921,500 원</span>
+                                      </div>
+                                      <button
+                                        type="button"
+                                        class="btn btn-label-primary mb-4"
+                                      >
+                                        <i
+                                          class="icon-base bx bx-minus icon-md"
+                                        ></i>
+                                      </button>
+                                    </div>
+                                    <div
+                                      class="d-flex justify-content-between p-3 px-6"
+                                    >
+                                      <div class="d-flex justify-content-start">
+                                        <span class="text-primary me-2"
+                                          ><i
+                                            class="icon-base bx bxs-circle icon-12px"
+                                          ></i
+                                        ></span>
+                                        <p class="mb-0">결제 내역</p>
+                                      </div>
+
+                                      <div
+                                        class="d-flex justify-content-between align-items-center"
+                                      >
+                                        <p class="mb-0">2025.07-22 12:23:33</p>
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="table-responsive border border-bottom-0 border-top-0 rounded mx-4"
+                                    >
+                                      <table class="table m-0">
+                                        <thead>
+                                          <tr class="bg-label-secondary">
+                                            <th>견적 번호</th>
+                                            <th>결제 방법</th>
+                                            <th>결제 카드</th>
+                                            <th>구매 상품</th>
+                                            <th>수량</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <td>#A034_12804</td>
+                                            <td>카드 결제</td>
+                                            <td>8234-****-****-5974</td>
+                                            <td>Solid Wooden Chair</td>
+                                            <td>$32.00</td>
+                                          </tr>
+                                          <tr>
+                                            <td>#A034_12804</td>
+                                            <td>카드 결제</td>
+                                            <td>8234-****-****-5974</td>
+                                            <td>Solid Wooden Chair</td>
+                                            <td>$32.00</td>
+                                          </tr>
+                                          <tr>
+                                            <td>#A034_12804</td>
+                                            <td>카드 결제</td>
+                                            <td>8234-****-****-5974</td>
+                                            <td>Solid Wooden Chair</td>
+                                            <td>$32.00</td>
+                                          </tr>
+                                          <tr>
+                                            <td>#A034_12804</td>
+                                            <td>카드 결제</td>
+                                            <td>8234-****-****-5974</td>
+                                            <td>Solid Wooden Chair</td>
+                                            <td>$32.00</td>
+                                          </tr>
+                                          <tr>
+                                            <td>#A034_12804</td>
+                                            <td>카드 결제</td>
+                                            <td>8234-****-****-5974</td>
+                                            <td>Solid Wooden Chair</td>
+                                            <td>$32.00</td>
+                                          </tr>
+                                          <tr>
+                                            <td>#A034_12804</td>
+                                            <td>카드 결제</td>
+                                            <td>8234-****-****-5974</td>
+                                            <td>Solid Wooden Chair</td>
+                                            <td>$32.00</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                    <!-- 결제내역 종료 -->
+                                    <div
+                                      class="d-flex justify-content-between p-3 px-6"
+                                    >
+                                      <div class="d-flex justify-content-start">
+                                        <span class="text-primary me-2"
+                                          ><i
+                                            class="icon-base bx bxs-circle icon-12px"
+                                          ></i
+                                        ></span>
+                                        <p class="mb-0">업체 정보</p>
+                                      </div>
+                                    </div>
+                                    <div class="row mx-1">
+                                      <div class="col-lg-5 col-12">
+                                        <div
+                                          class="cardMaster border p-6 rounded mb-4 h-px-300"
+                                        >
+                                          <div class="card-information">
+                                            <div
+                                              class="d-flex flex-column align-items-start mb-2"
+                                            >
+                                              <h6 class="mb-2 me-2">
+                                                서비스 업체
+                                              </h6>
+                                              <div
+                                                class="d-flex justify-content-start align-items-center mb-3"
+                                              >
+                                                <span
+                                                  class="badge bg-label-primary me-1 w-px-100"
+                                                  >상호</span
+                                                >
+                                                <span>주식회사 뉴프렌즈</span>
+                                              </div>
+                                              <div
+                                                class="d-flex justify-content-start align-items-center mb-3"
+                                              >
+                                                <span
+                                                  class="badge bg-label-primary me-1 w-px-100"
+                                                  >대표이사</span
+                                                >
+                                                <span>홍승표</span>
+                                              </div>
+                                              <div
+                                                class="d-flex justify-content-start align-items-center mb-3"
+                                              >
+                                                <span
+                                                  class="badge bg-label-primary me-1 w-px-100"
+                                                  >사업자등록번호</span
+                                                >
+                                                <span>898-81-02971</span>
+                                              </div>
+                                              <div
+                                                class="d-flex justify-content-start align-items-center mb-3"
+                                              >
+                                                <span
+                                                  class="badge bg-label-primary me-1 w-px-100"
+                                                  >고객센터</span
+                                                >
+                                                <span>031-895-5253</span>
+                                              </div>
+                                              <div
+                                                class="d-flex justify-content-start align-items-center mb-3"
+                                              >
+                                                <span
+                                                  class="badge bg-label-primary me-1 w-px-100"
+                                                  >주소</span
+                                                >
+                                                <span
+                                                  >경기도 화성시 동탄영천로
+                                                  101</span
+                                                >
+                                              </div>
+                                              <div
+                                                class="d-flex justify-content-start align-items-center"
+                                              >
+                                                <span
+                                                  class="badge bg-label-primary me-1 w-px-100"
+                                                  >호스팅 사업자</span
+                                                >
+                                                <span
+                                                  >Amazone Web
+                                                  Service(AWS)</span
+                                                >
+                                              </div>
+                                              <!-- end -->
+                                              <div
+                                                class="d-flex justify-content-between align-items-center"
+                                              ></div>
+                                              <!-- end -->
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- 서비스 업체 종료 -->
+                                      <div class="col-lg-7 col-12">
+                                        <div
+                                          class="cardMaster border p-6 rounded mb-4 h-px-300"
+                                        >
+                                          <div class="card-information">
+                                            <div
+                                              class="d-flex flex-column align-items-start mb-2"
+                                            >
+                                              <h6 class="mb-2 me-2">
+                                                결제 대행 업체
+                                              </h6>
+                                              <div
+                                                class="d-flex justify-content-start align-items-center mb-3"
+                                              >
+                                                <span
+                                                  class="badge bg-label-primary me-1 w-px-100"
+                                                  >상호</span
+                                                >
+                                                <span>토스페이먼츠(주)</span>
+                                              </div>
+                                              <div
+                                                class="d-flex justify-content-start align-items-center mb-3"
+                                              >
+                                                <span
+                                                  class="badge bg-label-primary me-1 w-px-100"
+                                                  >대표이사</span
+                                                >
+                                                <span>임한욱</span>
+                                              </div>
+                                              <div
+                                                class="d-flex justify-content-start align-items-center mb-3"
+                                              >
+                                                <span
+                                                  class="badge bg-label-primary me-1 w-px-100"
+                                                  >사업자등록번호</span
+                                                >
+                                                <span>481-86-01799</span>
+                                              </div>
+                                              <div
+                                                class="d-flex justify-content-start align-items-center mb-3"
+                                              >
+                                                <span
+                                                  class="badge bg-label-primary me-1 w-px-100"
+                                                  >고객센터</span
+                                                >
+                                                <span>1544-7772</span>
+                                              </div>
+                                              <div
+                                                class="d-flex justify-content-start align-items-center mb-3"
+                                              >
+                                                <span
+                                                  class="badge bg-label-primary me-1 w-px-100"
+                                                  >주소</span
+                                                >
+                                                <span
+                                                  >서울특별시 강남구 테헤란로
+                                                  131, 14층
+                                                  (역삼동,
+                                                  한국지식재산센터)</span
+                                                >
+                                              </div>
+
+                                              <!-- end -->
+                                              <div
+                                                class="d-flex justify-content-between align-items-center"
+                                              ></div>
+                                              <!-- end -->
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- 결제 대행 업체 종료 -->
+                                    </div>
+                                    <!-- end -->
+                                    <div
+                                      class="d-flex justify-content-between p-3 px-6"
+                                    >
+                                      <div class="d-flex justify-content-start">
+                                        <span class="text-primary me-2"
+                                          ><i
+                                            class="icon-base bx bxs-circle icon-12px"
+                                          ></i
+                                        ></span>
+                                        <p class="mb-0">최종 결제 금액</p>
+                                        <p class="mx-3 mb-0 text-primary">
+                                          <strong>4,580,000원</strong>
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <!-- 최종 결제 금액 종료 -->
+                                    <div
+                                      class="d-flex justify-content-end p-3 px-6"
+                                    >
+                                        <button
+                                          type="button"
+                                          class="btn btn-outline-secondary"
+                                        >
+                                          영수증 출력
+                                      </div>
+                                    <!-- 영수증 출력 버튼 종료 -->
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- 결제 정보 종료 -->
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- modal content end -->
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          <div
+                            class="modal-footer d-flex justify-content-center align-items-center"
+                          >
+                            <button
+                              type="button"
+                              class="btn btn-lg btn-primary w-px-300"
+                              data-bs-dismiss="modal"
+                            >
+                              확인
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <!-- modal End-->
+              </div>
+              <!--/ Customer Content -->
+            </div>
+          </div>
+          <!-- / Content -->
+        </div>
+        <!-- Content wrapper -->
+      </div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/theme.js  -->
+
+    <script src="./assets/vendor/libs/jquery/jquery.js"></script>
+
+    <script src="./assets/vendor/libs/popper/popper.js"></script>
+    <script src="./assets/vendor/js/bootstrap.js"></script>
+    <script src="./assets/vendor/libs/@algolia/autocomplete-js.js"></script>
+
+    <script src="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="./assets/vendor/libs/hammer/hammer.js"></script>
+
+    <script src="./assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/ui-modals.js"></script>
+
+    <!-- Page JS -->
+  </body>
+</html>
