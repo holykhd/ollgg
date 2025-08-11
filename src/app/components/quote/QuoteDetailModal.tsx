@@ -1,0 +1,335 @@
+import React from "react";
+
+interface Quote {
+  id: string;
+  status: string;
+  createdAt: string;
+  image: string;
+  productName: string;
+  type: string;
+  options: string;
+  isCustom: boolean;
+  desiredDelivery: string;
+  note?: string;
+  price: number;
+}
+
+interface QuoteDetailModalProps {
+  quote?: Quote | null;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const QuoteDetailModal: React.FC<QuoteDetailModalProps> = ({
+  quote,
+  isOpen,
+  onClose,
+}) => {
+  if (!isOpen || !quote) return null;
+
+  const handlePayment = () => {
+    alert(`견적 ${quote.id}에 대한 작업이 완료되었습니다.`);
+    onClose();
+  };
+
+  const handlePrintQuote = () => {
+    window.print();
+  };
+
+  const handleRequestAgain = () => {
+    // 견적 다시 요청 페이지로 이동
+    window.location.href = "/quote-request";
+  };
+
+  const handleDirectPayment = () => {
+    // 결제 페이지로 이동
+    window.location.href = "/payment";
+  };
+
+  // 견적취소 상태인지 확인
+  const isCancelledQuote = quote.status === "견적취소";
+
+  return (
+    <div
+      className={`modal fade ${isOpen ? "show" : ""}`}
+      style={{ display: isOpen ? "block" : "none" }}
+      tabIndex={-1}
+    >
+      <div className="modal-dialog modal-xl modal-dialog-scrollable">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">{quote.id}</h5>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={onClose}
+              aria-label="Close"
+            ></button>
+          </div>
+          <div className="modal-body">
+            <div className="row">
+              <div className="col-12">
+                <div className="custom-bg p-5" style={{ borderRadius: "20px" }}>
+                  {/* 견적 정보 카드 */}
+                  <div className="row mb-3">
+                    <div className="col-12">
+                      <div className="card h-100">
+                        <div className="d-flex justify-content-between p-3 px-6">
+                          <div className="d-flex justify-content-start align-items-center gap-4">
+                            <h5 className="mb-1">
+                              <strong>{quote.id}</strong>
+                            </h5>
+                            <span className="badge bg-label-primary mb-1">
+                              {quote.status}
+                            </span>
+                          </div>
+                          <h6 className="mb-1 text-secondary">
+                            {quote.createdAt}
+                          </h6>
+                        </div>
+                        <div className="d-flex align-items-start row px-5 mb-3">
+                          <div className="col-2">
+                            <img
+                              src={quote.image}
+                              width={138}
+                              height={108}
+                              className="rounded-2"
+                              alt={quote.productName}
+                            />
+                          </div>
+                          <div className="col-10">
+                            <h5 className="card-title mb-4 text-wrap">
+                              <strong>{quote.productName}</strong>
+                              <span className="badge bg-label-secondary rounded-5">
+                                {quote.type}
+                              </span>
+                            </h5>
+                            <p className="card-subtitle text-wrap">
+                              옵션 및 수량 : {quote.options}
+                            </p>
+                            <p className="card-subtitle text-wrap">
+                              제품 커스텀 : {quote.isCustom ? "Y" : "N"}
+                            </p>
+                            <p className="card-subtitle text-wrap">
+                              희망 납기일 : {quote.desiredDelivery}
+                            </p>
+                          </div>
+                        </div>
+                        {quote.note && (
+                          <div className="alert text-dark alert-primary alert-dismissible py-3 mx-3">
+                            <span>{quote.note}</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 코멘트 섹션 */}
+                  <div className="row mb-4">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-header d-flex justify-content-between">
+                          <h5 className="mb-0 fw-bold">코멘트</h5>
+                          <small className="text-muted">2025-06-26 10:30</small>
+                        </div>
+                        <div className="card-body">
+                          <div className="d-flex w-100 action-icons gap-3">
+                            <div className="w-100 alert text-dark alert-primary alert-dismissible d-flex justify-content-between align-items-center">
+                              <span>
+                                견적 관련 문의사항이나 특별 요청사항을 확인해
+                                주세요.
+                              </span>
+                            </div>
+                            <button
+                              type="button"
+                              className="btn btn-label-primary mb-4"
+                            >
+                              <i className="icon-base bx bx-minus icon-md"></i>
+                            </button>
+                          </div>
+                        </div>
+                        {/* 코멘트 작성 영역 */}
+
+                        {/* <div className="position-relative" role="alert">
+                          <div className="alert text-dark bg-label-primary mx-3 h-px-350 overflow-y-scroll pb-15"> */}
+                        {/* 코멘트 내용 */}
+                        {/* {Array.from({ length: 5 }).map((_, index) => (
+                              <React.Fragment key={index}>
+                                <div className="user-progress d-flex justify-content-start align-items-center gap-3">
+                                  <div className="alert bg-warning text-dark border-warning-subtle">
+                                    이 상품 KC 인증이 필요합니다. 인증 번호
+                                    있으신가요?
+                                  </div>
+                                </div>
+                                <div className="user-progress d-flex justify-content-end align-items-center gap-3">
+                                  <div className="alert bg-primary text-white border-info-subtle">
+                                    이 상품 KC 인증이 필요합니다. 인증 번호
+                                    있으신가요?
+                                  </div>
+                                </div>
+                              </React.Fragment>
+                            ))} */}
+                        {/* 코맨트 내용 */}
+                        {/* </div> */}
+                        {/* 코멘트 입력 시작 */}
+                        {/* <div className="chat-history-footer shadow-xs position-absolute bottom-0 left-0 right-0 p-4 my-3 mx-2">
+                            <form className="form-send-message d-flex justify-content-between align-items-center ">
+                              <input
+                                className="form-control message-input border-1 me-4 shadow-none bg-white rounded-5"
+                                placeholder="Type your message here..."
+                              />
+                              <div className="message-actions d-flex align-items-center">
+                                <button className="btn btn-primary d-flex send-msg-btn">
+                                  <span className="align-middle d-md-inline-block d-none">
+                                    Send
+                                  </span>
+                                  <i className="icon-base bx bx-paper-plane icon-sm ms-md-2 ms-0"></i>
+                                </button>
+                              </div>
+                            </form>
+                          </div> */}
+                        {/* 코멘트 입력 종료 */}
+                        {/* </div> */}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 견적 정보 섹션 */}
+                  <div className="row mb-4">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-header">
+                          <h5 className="mb-0 fw-bold">견적 정보</h5>
+                        </div>
+                        <div className="card-body">
+                          <div className="row">
+                            <div className="col-md-4">
+                              <div className="d-flex justify-content-between align-items-center mb-3">
+                                <p className="mb-1">완료 일자</p>
+                                <p className="mb-1 fw-bold">2025-06-23 07:00</p>
+                              </div>
+                            </div>
+                            <div className="col-md-4">
+                              <div className="d-flex justify-content-between align-items-center mb-3">
+                                <p className="mb-1">유효 일자</p>
+                                <p className="mb-1 fw-bold">2025-06-23 07:00</p>
+                              </div>
+                            </div>
+                            <div className="col-md-4">
+                              <div className="d-flex justify-content-between align-items-center mb-3">
+                                <p className="mb-1">예상 납기일</p>
+                                <p className="mb-1 fw-bold">결제 후 15일</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="d-flex w-100 action-icons gap-3">
+                            <div className="w-100 alert text-dark alert-primary alert-dismissible d-flex justify-content-between align-items-center">
+                              <span>최종 견적 금액</span>
+                              <strong className="text-primary fs-4">
+                                {quote.price.toLocaleString()} 원
+                              </strong>
+                            </div>
+                            <button
+                              type="button"
+                              className="btn btn-label-primary mb-4"
+                            >
+                              <i className="icon-base bx bx-minus icon-md"></i>
+                            </button>
+                          </div>
+                          <div className="row mt-3">
+                            <div className="col-12 d-flex justify-content-end gap-2">
+                              <button
+                                className="btn btn-outline-dark"
+                                onClick={handlePrintQuote}
+                              >
+                                견적 출력
+                              </button>
+                              {isCancelledQuote ? (
+                                <button
+                                  className="btn btn-outline-primary"
+                                  onClick={handleRequestAgain}
+                                >
+                                  다시 요청
+                                </button>
+                              ) : (
+                                <button
+                                  className="btn btn-outline-primary"
+                                  onClick={handleDirectPayment}
+                                >
+                                  바로 결제
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 주문 정보 섹션 */}
+                  {/* <div className="row mb-4">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-header">
+                          <h5 className="mb-0 fw-bold">주문 정보</h5>
+                        </div>
+                        <div className="card-body">
+                          <div className="row">
+                            <div className="col-md-4">
+                              <div className="d-flex justify-content-between align-items-center mb-3">
+                                <p className="mb-1">완료 일자</p>
+                                <p className="mb-1 fw-bold">2025-06-23 07:00</p>
+                              </div>
+                            </div>
+                            <div className="col-md-4">
+                              <div className="d-flex justify-content-between align-items-center mb-3">
+                                <p className="mb-1">주문 상태</p>
+                                <p className="mb-1 fw-bold">견적 검토중</p>
+                              </div>
+                            </div>
+                            <div className="col-md-4">
+                              <div className="d-flex justify-content-between align-items-center mb-3">
+                                <p className="mb-1">예상 수령일</p>
+                                <p className="mb-1 fw-bold">
+                                  견적 확정 후 결정
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="row mt-3">
+                            <div className="col-12 d-flex justify-content-end gap-2">
+                              <button className="btn btn-label-danger">
+                                견적 취소
+                              </button>
+                              <button
+                                className="btn btn-outline-secondary"
+                                onClick={handlePayment}
+                              >
+                                견적 승인
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> */}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="modal-footer d-flex justify-content-center">
+            <button
+              type="button"
+              className="btn btn-lg btn-primary w-px-300"
+              onClick={onClose}
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default QuoteDetailModal;

@@ -1,0 +1,89 @@
+@media (min-width: 992px) {
+  .vh-75 {
+    min-height: 75vh !important;
+  }
+  .vh-90 {
+    min-height: 90vh !important;
+  }
+  .content-bottom {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    padding: 1rem;
+  }
+}
+@media (max-width: 992px) {
+  .vh-75 {
+    min-height: 75vh !important;
+  }
+  .vh-90 {
+    min-height: 90vh !important;
+  }
+}
+
+@media (max-width: 592px) {
+  .vh-75 {
+    min-height: 75vh !important;
+  }
+  .vh-90 {
+    min-height: 125vh !important;
+  }
+}
+body,
+.custom-bg {
+  background-color: #f8fcff;
+}
+
+.vh-75 {
+  min-height: 75vh !important;
+}
+
+@media (min-width: 992px) {
+  .col-custom-1 {
+    flex: 0 0 auto;
+    width: 12.22222227%;
+  }
+}
+@media (min-width: 1200px) {
+  .col-custom-1 {
+    flex: 0 0 auto;
+    width: 12.22222227%;
+  }
+}
+
+/* Hide Next.js logo or branding */
+.next-logo,
+img[src*="next.svg"],
+img[src*="vercel.svg"],
+a[href*="nextjs.org"],
+a[href*="vercel.com"] {
+  display: none !important;
+}
+
+/* Hide any potential branding in footer */
+footer .next-logo,
+footer a[href*="nextjs"],
+footer a[href*="vercel"] {
+  display: none !important;
+}
+
+/* Modal backdrop overlay */
+.modal.show::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+  pointer-events: none;
+}
+
+/* Ensure modal dialog is above the backdrop */
+.modal-dialog {
+  position: relative;
+  z-index: 1050;
+}
